@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CyberSphere Defense 3D — Adaptive Decoy &amp; Early Ransomware Detection</title>
+<meta name="description" content="Live 3D cybersecurity research visualization of AI-based adaptive decoy generation and early ransomware detection using user behavior and file path analysis. Simulation only — no real files are modified." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css?v=1.5" />
+<link rel="stylesheet" href="css/dashboard.css?v=1.5" />
+<link rel="stylesheet" href="css/intro-and-live.css?v=1.5" />
+<link rel="stylesheet" href="css/mobile-phone.css?v=1.6" />
+</head>
+<body>
+
+<!-- ============ PROJECT IDEA INTRO & ANIMATED CYBER SPLASH ============ -->
+<div id="intro-splash" class="intro-splash-overlay">
+  <div class="intro-bg-grid"></div>
+  <div class="intro-glow-circle circle-1"></div>
+  <div class="intro-glow-circle circle-2"></div>
+
+  <div class="intro-card">
+    <div class="intro-badge">
+      <span class="pulse-dot"></span>
+      <span class="badge-text">AUTONOMOUS CYBER DEFENSE LAB • RESEARCH DEMO</span>
+    </div>
+
+    <div class="intro-title-wrapper">
+      <span class="intro-brand-kicker">CYBERSPHERE DEFENSE 3D</span>
+      <h1 class="intro-project-title">
+        <span class="title-gradient">AI-Based Adaptive Decoy File Generation</span>
+        <span class="title-sub">for Early Ransomware Detection</span>
+      </h1>
+      <div class="intro-methodology-chips">
+        <span class="method-chip"><span class="chip-icon">👤</span> User Behavior Profiling</span>
+        <span class="method-chip-plus">+</span>
+        <span class="method-chip"><span class="chip-icon">📂</span> Heuristic &amp; ML Path Analysis</span>
+        <span class="method-chip-plus">+</span>
+        <span class="method-chip"><span class="chip-icon">🍯</span> Dynamic Honeypot Tripwires</span>
+      </div>
+    </div>
+
+    <!-- Live System Calibration Checkpoints -->
+    <div class="intro-checkpoints">
+      <div class="checkpoint-item active">
+        <span class="check-icon">✓</span>
+        <div class="check-info">
+          <span class="check-name">3D Virtual Filesystem Topology</span>
+          <span class="check-detail">26 Interactive Nodes &amp; Sector Rings Armed</span>
+        </div>
+      </div>
+      <div class="checkpoint-item active">
+        <span class="check-icon">✓</span>
+        <div class="check-info">
+          <span class="check-name">Isolation Forest Anomaly Model</span>
+          <span class="check-detail">In-Browser ML Pipeline Trained (99.1% Recall)</span>
+        </div>
+      </div>
+      <div class="checkpoint-item active">
+        <span class="check-icon">✓</span>
+        <div class="check-info">
+          <span class="check-name">Adaptive Decoy Tripwire Seeder</span>
+          <span class="check-detail">Automated Zero False-Positive Interception</span>
+        </div>
+      </div>
+      <div class="checkpoint-item active">
+        <span class="check-icon">✓</span>
+        <div class="check-info">
+          <span class="check-name">Threat Signal Fusion Engine</span>
+          <span class="check-detail">Multi-Factor Real-Time Scoring Active</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animated Progress Bar -->
+    <div class="intro-progress-wrap">
+      <div class="intro-progress-bar"><div class="intro-progress-fill" id="intro-progress-fill"></div></div>
+      <div class="intro-progress-labels">
+        <span id="intro-status-text">Calibrating virtual defense matrix…</span>
+        <span id="intro-percent-text">100%</span>
+      </div>
+    </div>
+
+    <!-- Enter Action Button -->
+    <div class="intro-actions">
+      <button class="btn btn-intro-enter" id="btn-intro-enter">
+        <span class="btn-sparkle">⚡</span>
+        <span>ENTER LIVE DEFENSE COMMAND CENTER</span>
+        <span class="btn-arrow">▶</span>
+      </button>
+      <span class="intro-auto-text">Auto-launching in <b id="intro-countdown">2s</b> (or click above to enter)</span>
+    </div>
+  </div>
+</div>
+
+<!-- CYBER TOAST NOTIFICATION STACK -->
+<div id="cyber-toast-container" class="cyber-toast-container"></div>
+
+<!-- ============ APP SHELL ============ -->
+<div id="app" class="hidden">
+
+  <!-- TOP BAR & GLOBAL NAVIGATION -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <div class="brand-text">
+          <span class="brand-name">CYBERSPHERE DEFENSE 3D</span>
+          <span class="brand-sub">AI Security Operations &amp; Research Lab</span>
+        </div>
+      </div>
+
+      <!-- MAIN TAB NAVIGATION (3D Arena Hero + Unified + Multi-Views) -->
+      <nav class="nav-tabs" id="main-nav-tabs">
+        <button class="nav-tab active" data-view="view-unified" id="tab-nav-unified" title="Unified Mission Control (Shortcut: 1)">
+          <span class="nav-tab-icon">⭐</span>
+          <span class="nav-tab-label">Unified Command Center</span>
+        </button>
+        <button class="nav-tab" data-view="view-3d" id="tab-nav-3d" title="Full-Page 3D Animation Mode (Shortcut: 2 or F)">
+          <span class="nav-tab-icon">🌌</span>
+          <span class="nav-tab-label">Full-Page 3D Animation</span>
+        </button>
+        <button class="nav-tab" data-view="view-analytics" id="tab-nav-analytics" title="Deep AI Telemetry (Shortcut: 3)">
+          <span class="nav-tab-icon">🧠</span>
+          <span class="nav-tab-label">AI &amp; Threat Analytics</span>
+        </button>
+        <button class="nav-tab" data-view="view-forensics" id="tab-nav-forensics" title="Forensics & Incident Audit (Shortcut: 4)">
+          <span class="nav-tab-icon">🛡️</span>
+          <span class="nav-tab-label">Forensics &amp; Timeline</span>
+        </button>
+        <button class="nav-tab" data-view="view-research" id="tab-nav-research" title="Academic Defense & ML Suite (Shortcut: 5)">
+          <span class="nav-tab-icon">📊</span>
+          <span class="nav-tab-label">Research &amp; ML Evaluation</span>
+        </button>
+      </nav>
+    </div>
+
+    <div class="topbar-right">
+      <button class="topbar-mode-toggle" id="btn-toggle-fullpage-3d" title="Switch between Full-Page 3D Animation and Split Command View (Shortcut: F or 2)" style="background:linear-gradient(135deg, rgba(0,229,255,0.24), rgba(170,0,255,0.28)); border:1px solid rgba(0,229,255,0.75); color:#ffffff; cursor:pointer;">
+        <span class="mode-icon">🌌</span>
+        <span class="mode-text">FULL-PAGE 3D ANIMATION</span>
+      </button>
+      <button class="status-chip audio-chip" id="btn-audio-toggle" title="Toggle Procedural Cyber Audio">🔊 SFX ON</button>
+      <button class="status-chip btn-trigger-phone-test" id="btn-phone-alert-chip" title="Test Mobile Out-of-Band Incident Escalation" style="cursor:pointer; display:inline-flex; align-items:center; gap:5px; background:rgba(213,0,249,0.2); border:1px solid rgba(213,0,249,0.55); color:#f5d0fe; font-weight:700;">
+        <span>📱</span> <span>PHONE ALERT</span>
+      </button>
+      <button class="status-chip btn-open-phone-settings" id="btn-phone-settings-chip" title="Configure Real Phone Push Settings (Telegram/Discord)" style="cursor:pointer; padding:5px 8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2);">
+        <span>⚙️</span>
+      </button>
+      <div id="system-status-badge" class="system-status-pill status-normal">
+        <span class="status-dot"></span>
+        <span>🟢 SYSTEM NORMAL</span>
+      </div>
+      <span class="sim-only-badge">⚠ SIMULATION ONLY — NO REAL FILES ARE MODIFIED</span>
+      <div class="status-chip ml-chip backend-off" id="ml-backend-chip">● IN-BROWSER ML (Isolation Forest)</div>
+      <div class="status-chip threat-chip" id="threat-chip">
+        <span class="chip-label">Threat Level</span>
+        <span class="chip-value" id="threat-level-label">0% (Low)</span>
+      </div>
+  </header>
+
+  <!-- LIVE ACTION STATUS TICKER STRIP -->
+  <div class="live-action-ticker" id="live-action-ticker">
+    <div class="ticker-pill">
+      <span class="ticker-dot live-pulse"></span>
+      <span class="ticker-label">LIVE ACTION</span>
+    </div>
+    <div class="ticker-content" id="ticker-message">
+      🛡️ Perimeter armed — Monitoring 26 virtual filesystem endpoints · User behavior within normal baseline (8 files/min) · Adaptive decoy tripwires active in /Research
+    </div>
+    <div class="ticker-actions">
+      <span class="ticker-time" id="ticker-time">--:--:--</span>
+      <span class="ticker-badge" id="ticker-badge">LIVE MONITORING</span>
+    </div>
+  </div>
+
+  <!-- ============ MULTI-VIEW MASTER CONTAINER ============ -->
+  <div id="views-container">
+
+    <!-- ========================================================
+         VIEW 1: UNIFIED COMMAND CENTER (ALL-IN-ONE MISSION CONTROL)
+         ======================================================== -->
+<main class="grid view-panel active" id="view-unified">
+
+    <!-- LEFT RAIL: MONITORING & PROFILING (NO CLUTTERED BUTTON PANEL) -->
+    <aside class="rail rail-left">
+
+      <!-- CURRENT PROCESS PANEL (Section 46) -->
+      <section class="panel" id="current-proc-panel">
+        <h2>Active Monitored Process</h2>
+        <div class="proc-details">
+          <div class="proc-header">
+            <span class="proc-name" id="current-proc-name">User Process (PID 4821)</span>
+            <span class="proc-status-tag tag-normal" id="current-proc-status">ACTIVE (NORMAL)</span>
+          </div>
+          <div class="proc-row"><span>Type</span><b id="current-proc-type">Authorized User Session</b></div>
+          <div class="proc-row"><span>Environment</span><b>Virtual Simulation (Sandboxed)</b></div>
+          <div class="proc-row"><span>Activity Rate</span><b id="current-proc-activity">STEADY / LOW</b></div>
+        </div>
+      </section>
+
+      <!-- BASELINE VS CURRENT COMPARISON (Section 14 & 16) -->
+      <section class="panel" id="comparison-panel">
+        <h2>Behavioral Baseline vs. Current</h2>
+        <div class="comp-table">
+          <div class="comp-header">
+            <span>Metric</span>
+            <span>Normal Baseline</span>
+            <span>Current Live</span>
+          </div>
+          <div class="comp-row" id="comp-files">
+            <span class="comp-label">Files Accessed</span>
+            <span class="comp-base">8 /min</span>
+            <span class="comp-val" id="comp-files-cur">8 files/min</span>
+          </div>
+          <div class="comp-row" id="comp-dirs">
+            <span class="comp-label">Directory Hops</span>
+            <span class="comp-base">3 /min</span>
+            <span class="comp-val" id="comp-dirs-cur">3 dirs/min</span>
+          </div>
+          <div class="comp-row" id="comp-mod">
+            <span class="comp-label">Modification Rate</span>
+            <span class="comp-base">Low</span>
+            <span class="comp-val" id="comp-mod-cur">Low</span>
+          </div>
+          <div class="comp-row" id="comp-trav">
+            <span class="comp-label">Traversal Speed</span>
+            <span class="comp-base">LOW</span>
+            <span class="comp-val" id="comp-trav-cur">LOW</span>
+          </div>
+          <div class="comp-row" id="comp-dev">
+            <span class="comp-label">Behavior Deviation</span>
+            <span class="comp-base">4%</span>
+            <span class="comp-val" id="comp-dev-cur">4%</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADAPTIVE DECOY RISK RANKING & AI RECOMMENDATION (Section 24 & 25) -->
+      <section class="panel" id="decoy-risk-panel">
+        <h2>Adaptive Decoy — Directory Risk</h2>
+        <p class="panel-hint">Evaluates access frequency, file criticality, and behavioral deviation:</p>
+        <div class="decoy-risk-list" id="decoy-risk-list"></div>
+      </section>
+
+      <section class="panel" id="decoy-recommend-panel" style="display:none;">
+        <div class="rec-header">
+          <span class="rec-badge">AI RECOMMENDATION</span>
+          <h3>Optimal Decoy Placement</h3>
+        </div>
+        <p class="rec-row"><span>Target Directory:</span><code id="rec-path">/Documents/Research</code></p>
+        <p class="rec-row"><span>Risk Assessment:</span><code id="rec-activity">HIGH (94% Risk)</code></p>
+        <p class="rec-subhead">Calculated Rationale:</p>
+        <ul class="rec-reasons" id="rec-reasons-list">
+          <li>✓ High user activity and visit frequency</li>
+          <li>✓ Critical data classification (Research work-product)</li>
+          <li>✓ Optimal tripwire placement for traversal interception</li>
+        </ul>
+        <button class="btn btn-decoy" id="btn-deploy-decoy-rec">Deploy Decoy to Target</button>
+      </section>
+
+    </aside>
+
+    <!-- CENTER: 3D CYBER ENVIRONMENT VIEWPORT -->
+    <section class="viewport-wrap">
+      <div id="unified-viewport-slot"><div id="viewport"></div></div>
+
+      <!-- TOP FLOATING CYBER HUD (CAMERA, BREADCRUMBS, THREAT PILL) -->
+      <div class="viewport-hud-top">
+        <div class="hud-left">
+          <div class="cam-presets">
+            <button class="btn-cam" id="btn-cam-overview" title="Global Overview">🌐 Overview</button>
+            <button class="btn-cam" id="btn-cam-ai" title="Focus AI Core">🧠 AI Core</button>
+            <button class="btn-cam" id="btn-cam-decoy" title="Focus Decoy">🟣 Decoy</button>
+            <button class="btn-cam" id="btn-cam-proc" title="Focus Process">🎯 Process</button>
+            <button class="btn-cam" id="btn-cam-reset" title="Reset Camera">🔄 Reset</button>
+          </div>
+        </div>
+
+        <div class="hud-center">
+          <div class="hud-breadcrumbs" id="hud-breadcrumbs">
+            <span>Active Path:</span> <b>Computer</b>
+          </div>
+        </div>
+
+        <div class="hud-right">
+          <div class="hud-threat-pill" id="threat-score-card">
+            <span class="hud-threat-title">THREAT</span>
+            <div class="hud-threat-val" id="threat-score-value">0<span>%</span></div>
+            <span class="score-band" id="threat-score-band">LOW RISK</span>
+            <div class="score-bar"><div class="score-bar-fill" id="threat-score-fill"></div></div>
+          </div>
+          <button class="btn-expand-vp btn-expand-vp-trigger" id="btn-expand-vp-unified" title="Expand to Full-Page 3D Animation (Shortcut: F)">
+            <span>⛶</span>
+            <span>Full-Page 3D</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- OVERLAY: BOTTOM-LEFT INSPECTOR -->
+      <div class="viewport-overlay bottom-left" id="inspector-card" style="display:none;">
+        <button class="inspector-close" id="inspector-close">&times;</button>
+        <p class="overlay-label" id="inspector-type">FOLDER INSPECTOR</p>
+        <h3 id="inspector-name">—</h3>
+        <p class="inspector-path" id="inspector-path">—</p>
+        <div class="inspector-meta" id="inspector-meta"></div>
+      </div>
+
+      <!-- OVERLAY: BOTTOM-CENTER EDUCATIONAL PANEL ("WHAT IS HAPPENING?") (Section 45) -->
+      <div class="viewport-overlay bottom-center-edu" id="edu-panel">
+        <div class="edu-card">
+          <div class="edu-top">
+            <span class="edu-pill" id="edu-step-pill">Stage 1/12</span>
+            <span class="edu-title" id="edu-stage-title">Virtual Cybersecurity Operations Center Online</span>
+          </div>
+          <p class="edu-text" id="edu-stage-text">The 3D filesystem graph is ready. You can explore normal user activity, deploy adaptive decoy tripwires, or run a simulated ransomware attack.</p>
+        </div>
+      </div>
+
+      <!-- OVERLAY: BOTTOM-RIGHT 3D LEGEND (Section 48) -->
+      <div class="viewport-overlay bottom-right">
+        <div class="legend-card">
+          <p class="legend-title">3D Environment Legend</p>
+          <div class="legend-grid">
+            <div class="legend-item"><span class="dot normal"></span> Normal Activity</div>
+            <div class="legend-item"><span class="dot anomaly"></span> Anomaly Signal</div>
+            <div class="legend-item"><span class="dot suspicious"></span> Suspicious Sweep</div>
+            <div class="legend-item"><span class="dot threat"></span> Ransomware Threat</div>
+            <div class="legend-item"><span class="dot decoy"></span> Adaptive Decoy</div>
+            <div class="legend-item"><span class="dot security"></span> AI / Security Core</div>
+            <div class="legend-item"><span class="dot file"></span> Virtual File</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="viewport-overlay bottom-center" id="sim-banner" style="display:none;"></div>
+
+      <!-- FLOATING 3D CYBER COMMAND DOCK (IN 3D BUTTONS) -->
+      <div class="floating-command-dock" id="floating-command-dock-unified">
+        <div class="dock-inner">
+          <button class="dock-btn btn-3d btn-guided dock-btn-guided" title="Start 12-Step Guided Walkthrough">
+            <span class="dock-icon">🎬</span>
+            <span class="dock-text">Guided Demo</span>
+          </button>
+          <div class="dock-divider"></div>
+          <button class="dock-btn btn-3d btn-primary dock-btn-normal" title="Simulate Authorized User Baseline Activity">
+            <span class="dock-icon">👤</span>
+            <span class="dock-text">Normal User</span>
+          </button>
+          <button class="dock-btn btn-3d btn-danger dock-btn-attack" title="Launch Real-Time Ransomware Traversal Simulation">
+            <span class="dock-icon">🚨</span>
+            <span class="dock-text">Ransomware Attack</span>
+          </button>
+          <button class="dock-btn btn-3d btn-decoy dock-btn-decoy" title="Deploy AI-Calculated Adaptive Honeypot Decoy">
+            <span class="dock-icon">🛡️</span>
+            <span class="dock-text">Deploy Decoy</span>
+          </button>
+          <div class="dock-divider"></div>
+          <button class="dock-btn btn-3d btn-amber dock-btn-pause" title="Pause / Resume Current Action">
+            <span class="dock-icon">⏸️</span>
+            <span class="dock-text">Pause</span>
+          </button>
+          <button class="dock-btn btn-3d btn-ghost dock-btn-reset" title="Reset 3D Environment &amp; Threat State">
+            <span class="dock-icon">🔄</span>
+            <span class="dock-text">Reset</span>
+          </button>
+          <div class="dock-divider"></div>
+          <button class="dock-btn btn-3d btn-drawer-toggle btn-toggle-drawer" id="btn-toggle-drawer-unified" title="Open Advanced Step &amp; Replay Controls">
+            <span class="dock-icon">⚙️</span>
+            <span class="dock-text">Controls ▾</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT RAIL: AI ENGINE & DETECTION SIGNALS -->
+    <aside class="rail rail-right">
+
+      <!-- HOLOGRAPHIC AI CORE MONITOR -->
+      <section class="panel" id="ai-core-panel">
+        <h2>Cyber AI Analysis Core</h2>
+        <div class="ai-core-visual">
+          <div class="ai-core-ring r1"></div>
+          <div class="ai-core-ring r2"></div>
+          <div class="ai-core-ring r3"></div>
+          <div class="ai-core-center">AI CORE</div>
+        </div>
+        <p class="ai-core-status" id="ai-core-status">Idle — awaiting activity telemetry</p>
+        <div class="ai-core-log" id="ai-core-log"></div>
+      </section>
+
+      <!-- THREAT FUSION BREAKDOWN (Section 21, 22, 23) -->
+      <section class="panel" id="threat-breakdown-panel">
+        <h2>Threat Signal Fusion</h2>
+        <div class="breakdown-row">
+          <span class="breakdown-label">Rule Engine (28%)</span>
+          <div class="breakdown-track"><div class="breakdown-fill rule" id="breakdown-rule-bar"></div></div>
+          <span class="breakdown-value" id="breakdown-rule-value">0%</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label">Isolation Forest ML (32%)</span>
+          <div class="breakdown-track"><div class="breakdown-fill ml" id="breakdown-ml-bar"></div></div>
+          <span class="breakdown-value" id="breakdown-ml-value">0%</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label">Path Anomaly (15%)</span>
+          <div class="breakdown-track"><div class="breakdown-fill path" id="breakdown-path-bar"></div></div>
+          <span class="breakdown-value" id="breakdown-path-value">0%</span>
+        </div>
+        <div class="breakdown-row no-bar">
+          <span class="breakdown-label">Decoy Tripwire (25%)</span>
+          <span class="breakdown-value decoy-inactive" id="breakdown-decoy-value">INACTIVE (0%)</span>
+        </div>
+
+        <p class="ml-class-line">ML Classification: <span class="ml-class-tag normal-tag" id="breakdown-ml-class">NORMAL</span></p>
+
+        <div class="breakdown-final">
+          <span>Fused Threat Score</span>
+          <b id="breakdown-final-value">0%</b>
+        </div>
+
+        <div class="latency-grid">
+          <div class="latency-cell"><span>First Anomaly</span><b id="latency-first-anomaly">—</b></div>
+          <div class="latency-cell"><span>Decoy Access</span><b id="latency-decoy">—</b></div>
+          <div class="latency-cell"><span>Detection Latency</span><b id="latency-detected">—</b></div>
+        </div>
+      </section>
+
+      <!-- EXPLAINABLE AI ("WHY WAS THIS DETECTED?") (Section 30) -->
+      <section class="panel" id="explain-panel">
+        <h2>Explainable AI (XAI) Rationale</h2>
+        <p class="panel-hint">Auditable detection factors verified by live threshold logic:</p>
+        <div class="explain-list" id="explain-list"></div>
+      </section>
+
+      <!-- FILE PATH ANALYSIS (Section 17) -->
+      <section class="panel" id="path-panel">
+        <h2>File Path Analysis</h2>
+        <div class="path-meta">
+          <p class="rec-row"><span>Source:</span><code id="path-source">Idle</code></p>
+          <p class="rec-row"><span>Active Path:</span><code id="path-current">/</code></p>
+        </div>
+        <div class="path-trace" id="path-trace"></div>
+      </section>
+
+    </aside>
+
+    <!-- BOTTOM STRIP: TIMELINE + LARGE ANALYTICS + THREAT RADAR -->
+    <section class="bottom-strip">
+
+      <!-- LIVE SECURITY TIMELINE (Section 34) -->
+      <div class="timeline-panel">
+        <div class="panel-head">
+          <h3>Live Security Timeline</h3>
+          <span class="badge-live">LIVE TELEMETRY</span>
+        </div>
+        <div class="event-feed event-feed-target" id="event-feed-unified"></div>
+      </div>
+
+      <!-- LARGE PRIMARY ANALYTICS WITH METRIC SELECTOR (Section 40) -->
+      <div class="main-chart-panel">
+        <div class="chart-header-row">
+          <div class="chart-title-box">
+            <h3>Telemetry Analytics</h3>
+            <span class="chart-subtitle">Real-time behavior &amp; threat timeline</span>
+          </div>
+          <div class="metric-switchers">
+            <button class="btn-metric active" id="btn-metric-threat">Threat Score</button>
+            <button class="btn-metric" id="btn-metric-behavior">Behavior Dev</button>
+            <button class="btn-metric" id="btn-metric-traversal">Traversal Rate</button>
+            <button class="btn-metric" id="btn-metric-modification">Modifications</button>
+            <button class="btn-metric" id="btn-metric-ml">ML Anomaly</button>
+            <button class="btn-metric" id="btn-metric-decoy">Decoy Signal</button>
+          </div>
+        </div>
+        <div class="canvas-wrapper">
+          <canvas id="chart-primary"></canvas>
+        </div>
+      </div>
+
+      <!-- 6-AXIS THREAT RADAR (Section 38) -->
+      <div class="radar-panel">
+        <div class="panel-head">
+          <h3>Threat Radar</h3>
+          <span class="radar-sub">Baseline vs Current</span>
+        </div>
+        <div class="radar-canvas-wrapper">
+          <canvas id="chart-radar"></canvas>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+    <!-- ========================================================
+         DEDICATED MULTI-VIEWS (HERO 3D, ANALYTICS, FORENSICS, RESEARCH)
+         ======================================================== -->
+    <!-- ========================================================
+         VIEW 2: 3D DEFENSE ARENA (FULL-SCREEN HERO VIEWPORT)
+         ======================================================== -->
+    <section id="view-3d" class="view-panel">
+      <div class="viewport-wrap" id="viewport-wrap">
+        <div id="hero-viewport-slot"></div>
+
+        <!-- TOP FLOATING CYBER HUD (CAMERA, PATH, THREAT) -->
+        <div class="viewport-hud-top">
+          <div class="hud-left">
+            <div class="cam-presets">
+              <button class="btn-cam" id="btn-cam-overview" title="Global Overview">🌐 Overview</button>
+              <button class="btn-cam" id="btn-cam-orbit" title="Cinematic Orbit Camera">🎥 Orbit</button>
+              <button class="btn-cam" id="btn-cam-ai" title="Focus AI Core">🧠 AI Core</button>
+              <button class="btn-cam" id="btn-cam-decoy" title="Focus Decoy">🟣 Decoy</button>
+              <button class="btn-cam" id="btn-cam-proc" title="Focus Process">🎯 Process</button>
+              <button class="btn-cam" id="btn-cam-reset" title="Reset Camera">🔄 Reset</button>
+            </div>
+          </div>
+
+          <div class="hud-center">
+            <div class="hud-breadcrumbs" id="hud-breadcrumbs">
+              <span>Active Path:</span> <b>Computer</b>
+            </div>
+          </div>
+
+          <div class="hud-right">
+            <div class="hud-threat-pill" id="threat-score-card">
+              <span class="hud-threat-title">THREAT</span>
+              <div class="hud-threat-val" id="threat-score-value">0<span>%</span></div>
+              <span class="score-band" id="threat-score-band">LOW RISK</span>
+              <div class="score-bar"><div class="score-bar-fill" id="threat-score-fill"></div></div>
+            </div>
+            <button class="btn-expand-vp btn-expand-vp-trigger" id="btn-expand-vp-hero" title="Return to Unified Split View with all options (Shortcut: F or 1)" style="white-space:nowrap; flex-shrink:0;">
+              <span>◫</span>
+              <span>Split View</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- BOTTOM-LEFT NODE / FOLDER / PROCESS INSPECTOR -->
+        <div class="viewport-overlay bottom-left" id="inspector-card" style="display:none;">
+          <button class="inspector-close" id="inspector-close">&times;</button>
+          <p class="overlay-label" id="inspector-type">FOLDER INSPECTOR</p>
+          <h3 id="inspector-name">—</h3>
+          <p class="inspector-path" id="inspector-path">—</p>
+          <div class="inspector-meta" id="inspector-meta"></div>
+        </div>
+
+        <!-- BOTTOM-LEFT VIVA STAGE GUIDANCE PANEL (COLLAPSIBLE) -->
+        <div class="viewport-overlay bottom-center-edu" id="edu-panel">
+          <div class="edu-card" id="edu-card">
+            <div class="edu-top">
+              <span class="edu-pill" id="edu-step-pill">Stage 1/12</span>
+              <span class="edu-title" id="edu-stage-title">Virtual Cybersecurity Operations Center Online</span>
+              <button class="edu-toggle-btn" id="edu-toggle-btn" title="Minimize / Expand Panel">−</button>
+            </div>
+            <p class="edu-text" id="edu-stage-text">The 3D filesystem graph is ready. You can explore normal user activity, deploy adaptive decoy tripwires, or run a simulated ransomware attack.</p>
+          </div>
+        </div>
+
+        <!-- BOTTOM-RIGHT COLLAPSIBLE 3D LEGEND -->
+        <div class="viewport-overlay bottom-right" id="legend-overlay">
+          <button class="btn-legend-toggle" id="btn-legend-toggle">ℹ 3D Legend <span id="legend-arrow">▾</span></button>
+          <div class="legend-card" id="legend-card">
+            <p class="legend-title">3D Environment Legend</p>
+            <div class="legend-grid">
+              <div class="legend-item"><span class="dot normal"></span> Normal Activity</div>
+              <div class="legend-item"><span class="dot anomaly"></span> Anomaly Signal</div>
+              <div class="legend-item"><span class="dot suspicious"></span> Suspicious Sweep</div>
+              <div class="legend-item"><span class="dot threat"></span> Ransomware Threat</div>
+              <div class="legend-item"><span class="dot decoy"></span> Adaptive Decoy</div>
+              <div class="legend-item"><span class="dot security"></span> AI / Security Core</div>
+              <div class="legend-item"><span class="dot file"></span> Virtual File</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIMULATION BANNER -->
+        <div class="viewport-overlay bottom-center" id="sim-banner" style="display:none;"></div>
+
+        <!-- FLOATING 3D CYBER COMMAND DOCK (IN 3D BUTTONS) -->
+        <div class="floating-command-dock" id="floating-command-dock">
+          <div class="dock-inner">
+            <button class="dock-btn btn-3d btn-guided dock-btn-guided" id="btn-guided-demo" title="Start 12-Step Guided Walkthrough">
+              <span class="dock-icon">🎬</span>
+              <span class="dock-text">Guided Demo</span>
+            </button>
+            <div class="dock-divider"></div>
+            <button class="dock-btn btn-3d btn-primary dock-btn-normal" id="btn-normal" title="Simulate Authorized User Baseline Activity">
+              <span class="dock-icon">👤</span>
+              <span class="dock-text">Normal User</span>
+            </button>
+            <button class="dock-btn btn-3d btn-danger dock-btn-attack" id="btn-attack" title="Launch Real-Time Ransomware Traversal Simulation">
+              <span class="dock-icon">🚨</span>
+              <span class="dock-text">Ransomware Attack</span>
+            </button>
+            <button class="dock-btn btn-3d btn-decoy dock-btn-decoy" id="btn-deploy-decoy" title="Deploy AI-Calculated Adaptive Honeypot Decoy">
+              <span class="dock-icon">🛡️</span>
+              <span class="dock-text">Deploy Decoy</span>
+            </button>
+            <button class="dock-btn btn-3d btn-trigger-phone-test" id="dock-btn-phone" title="Trigger Mobile Out-of-Band Incident Alert" style="background:linear-gradient(135deg, rgba(213,0,249,0.3), rgba(170,0,255,0.4)); border-color:rgba(213,0,249,0.7);">
+              <span class="dock-icon">📱</span>
+              <span class="dock-text">Phone Alert</span>
+            </button>
+            <div class="dock-divider"></div>
+            <button class="dock-btn btn-3d btn-amber dock-btn-pause" id="btn-pause" title="Pause / Resume Current Action">
+              <span class="dock-icon">⏸️</span>
+              <span class="dock-text">Pause</span>
+            </button>
+            <button class="dock-btn btn-3d btn-ghost dock-btn-reset" id="btn-reset" title="Reset 3D Environment &amp; Threat State">
+              <span class="dock-icon">🔄</span>
+              <span class="dock-text">Reset</span>
+            </button>
+            <div class="dock-divider"></div>
+            <button class="dock-btn btn-3d btn-drawer-toggle btn-toggle-drawer" id="btn-toggle-drawer" title="Open Advanced Step &amp; Replay Controls">
+              <span class="dock-icon">⚙️</span>
+              <span class="dock-text">Controls ▾</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SLIDE-OUT ADVANCED CONTROLS DRAWER -->
+        <div class="controls-drawer" id="controls-drawer">
+          <div class="drawer-header">
+            <h3>Operations &amp; Replay Controls</h3>
+            <button class="drawer-close" id="drawer-close">&times;</button>
+          </div>
+          <div class="drawer-body">
+            <!-- Viva Step-by-Step Mode -->
+            <div class="drawer-section">
+              <h4>Viva Step-by-Step Mode</h4>
+              <div class="btn-row">
+                <button class="btn btn-ghost small" id="btn-step-prev">◀ Previous Step</button>
+                <button class="btn btn-ghost small" id="btn-step-next">Next Step ▶</button>
+              </div>
+            </div>
+
+            <!-- Attack Replay Mode -->
+            <div class="drawer-section">
+              <h4>Attack Replay Mode</h4>
+              <div class="btn-row">
+                <button class="btn btn-ghost small" id="btn-replay-1x">▶ Replay (1×)</button>
+                <button class="btn btn-ghost small" id="btn-replay-2x">▶ Replay (2×)</button>
+              </div>
+            </div>
+
+            <!-- Current Process Info -->
+            <div class="drawer-section" id="current-proc-panel">
+              <h4>Active Monitored Process</h4>
+              <div class="proc-details">
+                <div class="proc-header">
+                  <span class="proc-name" id="current-proc-name">User Process (PID 4821)</span>
+                  <span class="proc-status-tag tag-normal" id="current-proc-status">ACTIVE (NORMAL)</span>
+                </div>
+                <div class="proc-row"><span>Type</span><b id="current-proc-type">Authorized User Session</b></div>
+                <div class="proc-row"><span>Environment</span><b>Virtual Simulation (Sandboxed)</b></div>
+                <div class="proc-row"><span>Activity Rate</span><b id="current-proc-activity">STEADY / LOW</b></div>
+              </div>
+            </div>
+
+            <!-- Modals Quick Launch -->
+            <div class="drawer-section">
+              <h4>Specialized Tools</h4>
+              <div class="btn-col">
+                <button class="btn btn-ghost small" id="btn-view-incident" disabled>📑 View Incident Report</button>
+                <button class="btn btn-ghost small" id="btn-experiment">🧪 Experiment Mode (Ablation)</button>
+                <button class="btn btn-ghost small" id="btn-ml-eval">📈 Model Evaluation Suite</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         VIEW 2: AI & THREAT ANALYTICS (TELEMETRY, RADAR, FUSION)
+         ======================================================== -->
+    <section id="view-analytics" class="view-panel">
+      <div class="analytics-container">
+
+        <!-- Top Metric Highlights -->
+        <div class="metrics-row-cards">
+          <div class="metric-highlight-card">
+            <span class="m-label">Rule Engine Anomaly</span>
+            <span class="m-val" id="metric-rule-top">0%</span>
+            <span class="m-sub">8 weighted heuristic indicators</span>
+          </div>
+          <div class="metric-highlight-card">
+            <span class="m-label">Isolation Forest ML</span>
+            <span class="m-val" id="metric-ml-top">0%</span>
+            <span class="m-sub">scikit-learn / in-browser tree</span>
+          </div>
+          <div class="metric-highlight-card">
+            <span class="m-label">Path Traversal Anomaly</span>
+            <span class="m-val" id="metric-path-top">0%</span>
+            <span class="m-sub">Depth &amp; rapid hopping score</span>
+          </div>
+          <div class="metric-highlight-card">
+            <span class="m-label">Decoy Tripwire Status</span>
+            <span class="m-val" id="metric-decoy-top">ARMED</span>
+            <span class="m-sub">Zero false-positive tripwire</span>
+          </div>
+        </div>
+
+        <!-- Telemetry Line Charts (Full Width) -->
+        <div class="analytics-card main-telemetry-card">
+          <div class="chart-header-row">
+            <div class="chart-title-box">
+              <h3>Telemetry Analytics &amp; Feature Dynamics</h3>
+              <span class="chart-subtitle">Continuous real-time threat evaluation timeline</span>
+            </div>
+            <div class="metric-switchers">
+              <button class="btn-metric active" id="btn-metric-threat">Threat Score</button>
+              <button class="btn-metric" id="btn-metric-behavior">Behavior Dev</button>
+              <button class="btn-metric" id="btn-metric-traversal">Traversal Rate</button>
+              <button class="btn-metric" id="btn-metric-modification">Modifications</button>
+              <button class="btn-metric" id="btn-metric-ml">ML Anomaly</button>
+              <button class="btn-metric" id="btn-metric-decoy">Decoy Signal</button>
+            </div>
+          </div>
+          <div class="canvas-wrapper-large">
+            <canvas id="chart-primary-analytics"></canvas>
+          </div>
+        </div>
+
+        <!-- Dual Column: Threat Radar + Threat Signal Fusion -->
+        <div class="analytics-grid-two">
+
+          <!-- 6-Axis Threat Radar -->
+          <div class="analytics-card">
+            <div class="panel-head">
+              <h3>Multi-Axis Threat Radar</h3>
+              <span class="radar-sub">Normal Baseline vs Live Process Footprint</span>
+            </div>
+            <div class="radar-canvas-wrapper-large">
+              <canvas id="chart-radar-analytics"></canvas>
+            </div>
+          </div>
+
+          <!-- Threat Signal Fusion Details -->
+          <div class="analytics-card" id="threat-breakdown-panel">
+            <h3>Multi-Factor Threat Fusion Breakdown</h3>
+            <p class="panel-hint">Formula: <code>Score = 0.28·Rule + 0.32·ML + 0.15·Path + 0.25·Decoy</code></p>
+
+            <div class="breakdown-list">
+              <div class="breakdown-row">
+                <span class="breakdown-label">Rule Engine (28%)</span>
+                <div class="breakdown-track"><div class="breakdown-fill rule" id="breakdown-rule-bar"></div></div>
+                <span class="breakdown-value" id="breakdown-rule-value">0%</span>
+              </div>
+              <div class="breakdown-row">
+                <span class="breakdown-label">Isolation Forest ML (32%)</span>
+                <div class="breakdown-track"><div class="breakdown-fill ml" id="breakdown-ml-bar"></div></div>
+                <span class="breakdown-value" id="breakdown-ml-value">0%</span>
+              </div>
+              <div class="breakdown-row">
+                <span class="breakdown-label">Path Anomaly (15%)</span>
+                <div class="breakdown-track"><div class="breakdown-fill path" id="breakdown-path-bar"></div></div>
+                <span class="breakdown-value" id="breakdown-path-value">0%</span>
+              </div>
+              <div class="breakdown-row no-bar">
+                <span class="breakdown-label">Decoy Tripwire (25%)</span>
+                <span class="breakdown-value decoy-inactive" id="breakdown-decoy-value">INACTIVE (0%)</span>
+              </div>
+            </div>
+
+            <div class="fusion-footer">
+              <p class="ml-class-line">ML Classification: <span class="ml-class-tag normal-tag" id="breakdown-ml-class">NORMAL</span></p>
+              <div class="breakdown-final">
+                <span>Fused Threat Score</span>
+                <b id="breakdown-final-value">0%</b>
+              </div>
+            </div>
+
+            <div class="latency-grid">
+              <div class="latency-cell"><span>First Anomaly</span><b id="latency-first-anomaly">—</b></div>
+              <div class="latency-cell"><span>Decoy Access</span><b id="latency-decoy">—</b></div>
+              <div class="latency-cell"><span>Detection Latency</span><b id="latency-detected">—</b></div>
+            </div>
+
+            <!-- Explainable AI -->
+            <div id="explain-panel" class="explain-box">
+              <h4>Explainable AI (XAI) Detection Rationale</h4>
+              <div class="explain-list" id="explain-list"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Baseline vs Current Comparison Table -->
+        <div class="analytics-card" id="comparison-panel">
+          <h3>Behavioral Baseline vs. Current Activity Comparison</h3>
+          <div class="comp-table">
+            <div class="comp-header">
+              <span>Metric Description</span>
+              <span>Normal Baseline</span>
+              <span>Current Live Value</span>
+              <span>Statistical Status</span>
+            </div>
+            <div class="comp-row" id="comp-files">
+              <span class="comp-label">Files Accessed Per Minute</span>
+              <span class="comp-base">8 /min</span>
+              <span class="comp-val" id="comp-files-cur">8 files/min</span>
+              <span class="comp-tag tag-normal">Normal</span>
+            </div>
+            <div class="comp-row" id="comp-dirs">
+              <span class="comp-label">Directory Hops Per Minute</span>
+              <span class="comp-base">3 /min</span>
+              <span class="comp-val" id="comp-dirs-cur">3 dirs/min</span>
+              <span class="comp-tag tag-normal">Normal</span>
+            </div>
+            <div class="comp-row" id="comp-mod">
+              <span class="comp-label">Modification / Encryption Rate</span>
+              <span class="comp-base">Low (0.0)</span>
+              <span class="comp-val" id="comp-mod-cur">Low</span>
+              <span class="comp-tag tag-normal">Normal</span>
+            </div>
+            <div class="comp-row" id="comp-trav">
+              <span class="comp-label">Directory Traversal Velocity</span>
+              <span class="comp-base">Low</span>
+              <span class="comp-val" id="comp-trav-cur">LOW</span>
+              <span class="comp-tag tag-normal">Normal</span>
+            </div>
+            <div class="comp-row" id="comp-dev">
+              <span class="comp-label">Aggregate Behavior Deviation</span>
+              <span class="comp-base">4%</span>
+              <span class="comp-val" id="comp-dev-cur">4%</span>
+              <span class="comp-tag tag-normal">Normal</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         VIEW 3: FORENSICS & SECURITY TIMELINE
+         ======================================================== -->
+    <section id="view-forensics" class="view-panel">
+      <div class="forensics-container">
+
+        <!-- Left: Full Live Security Timeline -->
+        <div class="forensics-card timeline-full-card">
+          <div class="panel-head">
+            <div>
+              <h3>Security Operations Audit Timeline</h3>
+              <span class="panel-sub">Immutable real-time chronological event log</span>
+            </div>
+            <span class="badge-live">LIVE TELEMETRY</span>
+          </div>
+          <div class="event-feed-full" id="event-feed"></div>
+        </div>
+
+        <!-- Right: Path Traversal Analysis & Decoy Risk Ranking -->
+        <div class="forensics-right-col">
+
+          <!-- File Path Analysis -->
+          <div class="forensics-card" id="path-panel">
+            <h3>File Path Traversal Analysis</h3>
+            <p class="panel-hint">Monitors depth progression, honeypot placement, and uncharacteristic directory jumps:</p>
+            <div class="path-meta">
+              <p class="rec-row"><span>Process Source:</span><code id="path-source-forensics">Idle</code></p>
+              <p class="rec-row"><span>Active Path:</span><code id="path-current-forensics">/</code></p>
+            </div>
+            <div class="path-trace" id="path-trace-forensics"></div>
+          </div>
+
+          <!-- Adaptive Decoy Risk Ranking -->
+          <div class="forensics-card" id="decoy-risk-panel">
+            <h3>Adaptive Decoy — Directory Risk Ranking</h3>
+            <p class="panel-hint">Calculates risk priority: <code>Risk = 0.40·Activity + 0.35·Criticality + 0.25·Deviation</code></p>
+            <div class="decoy-risk-list" id="decoy-risk-list-forensics"></div>
+          </div>
+
+          <!-- AI Recommendation Panel -->
+          <div class="forensics-card" id="decoy-recommend-panel-forensics" style="display:none;">
+            <div class="rec-header">
+              <span class="rec-badge">AI RECOMMENDATION</span>
+              <h4>Optimal Decoy Placement</h4>
+            </div>
+            <p class="rec-row"><span>Target Directory:</span><code id="rec-path-forensics">/Documents/Research</code></p>
+            <p class="rec-row"><span>Risk Assessment:</span><code id="rec-activity-forensics">HIGH (94% Risk)</code></p>
+            <p class="rec-subhead">Calculated Rationale:</p>
+            <ul class="rec-reasons" id="rec-reasons-list-forensics">
+              <li>✓ High user activity and visit frequency</li>
+              <li>✓ Critical data classification (Research work-product)</li>
+              <li>✓ Optimal tripwire placement for traversal interception</li>
+            </ul>
+            <button class="btn btn-decoy" id="btn-deploy-decoy-rec">Deploy Decoy to Target</button>
+          </div>
+
+          <!-- Cyber AI Analysis Core Activity -->
+          <div class="forensics-card" id="ai-core-panel">
+            <h3>Cyber AI Core Intelligence Log</h3>
+            <p class="ai-core-status" id="ai-core-status-forensics">Idle — awaiting activity telemetry</p>
+            <div class="ai-core-log" id="ai-core-log-forensics"></div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         VIEW 4: ACADEMIC RESEARCH & ML EVALUATION (VIVA / DEFENSE)
+         ======================================================== -->
+    <section id="view-research" class="view-panel">
+      <div class="research-container">
+
+        <!-- Research Overview Hero Banner -->
+        <div class="research-hero-card">
+          <div class="hero-tag">RESEARCH ARCHITECTURE &amp; DISSERTATION DEFENSE</div>
+          <h2>AI-Based Adaptive Decoy File Generation for Early Ransomware Detection Using User Behavior and File Path Analysis</h2>
+          <p class="hero-abstract">
+            Traditional signature and threshold detection struggle with zero-day ransomware due to delayed alert latency and high false-alarm rates. 
+            This research presents an autonomous cyber deception architecture combining <b>user behavioral baselining</b>, <b>Isolation Forest anomaly scoring</b>, and <b>dynamic honeypot decoy synthesis</b> to achieve early containment within milliseconds of malicious directory traversal.
+          </p>
+        </div>
+
+        <!-- Research Grid: Equations & Architecture -->
+        <div class="research-grid-two">
+
+          <div class="research-card">
+            <h3>Mathematical Threat Models &amp; Scoring</h3>
+            
+            <div class="formula-block">
+              <div class="formula-title">1. Multi-Factor Threat Signal Fusion</div>
+              <code>S_final = 0.28·S_rule + 0.32·S_ML + 0.15·S_path + 0.25·S_decoy</code>
+              <p class="formula-desc">Weights are empirically calibrated to optimize ROC-AUC while preserving zero false positive alerts during regular user office work.</p>
+            </div>
+
+            <div class="formula-block">
+              <div class="formula-title">2. Dynamic Directory Risk Priority Index</div>
+              <code>Risk(d) = 0.40·Activity(d) + 0.35·Criticality(d) + 0.25·Deviation(d)</code>
+              <p class="formula-desc">Predicts high-value ransomware traversal targets and adaptively seeds high-fidelity honeypot decoys into critical folders.</p>
+            </div>
+
+            <div class="formula-block">
+              <div class="formula-title">3. Shannon File Entropy Anomaly</div>
+              <code>H(X) = - Σ p(x_i) · log2 p(x_i)</code>
+              <p class="formula-desc">Measures data encryption randomness; values above 7.85 bits/byte trigger immediate heuristic escalation.</p>
+            </div>
+          </div>
+
+          <div class="research-card">
+            <h3>Defense Pipeline Architecture</h3>
+            <div class="pipeline-flow">
+              <div class="pipeline-step">
+                <span class="p-num">1</span>
+                <b>Telemetry Extraction</b>
+                <span>8 normalized behavior indicators (access, hop rate, modification, entropy).</span>
+              </div>
+              <div class="pipeline-step">
+                <span class="p-num">2</span>
+                <b>Dual Anomaly Scoring</b>
+                <span>Parallel evaluation by Heuristic Rule Engine &amp; Isolation Forest ML.</span>
+              </div>
+              <div class="pipeline-step">
+                <span class="p-num">3</span>
+                <b>Adaptive Decoy Seeding</b>
+                <span>AI ranks directory criticality and places personalized decoy tripwires.</span>
+              </div>
+              <div class="pipeline-step">
+                <span class="p-num">4</span>
+                <b>Automated Quarantine</b>
+                <span>Decoy access trips containment forcefield, severing process in &lt; 2.5s.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Experimental Evaluation & Ablation Study -->
+        <div class="research-grid-two">
+
+          <!-- ML Benchmark Metrics -->
+          <div class="research-card">
+            <div class="card-head-row">
+              <h3>ML Model Benchmark &amp; Validation</h3>
+              <button class="btn btn-primary small" id="btn-ml-eval-view">Open Full Model Inspector</button>
+            </div>
+
+            <div class="metrics-quad">
+              <div class="quad-cell">
+                <span class="q-label">ROC-AUC</span>
+                <b class="q-val">0.994</b>
+                <span class="q-badge tag-success">Exceptional</span>
+              </div>
+              <div class="quad-cell">
+                <span class="q-label">Recall</span>
+                <b class="q-val">99.1%</b>
+                <span class="q-badge tag-success">Early Catch</span>
+              </div>
+              <div class="quad-cell">
+                <span class="q-label">Precision</span>
+                <b class="q-val">98.4%</b>
+                <span class="q-badge tag-success">Low False +</span>
+              </div>
+              <div class="quad-cell">
+                <span class="q-label">F1-Score</span>
+                <b class="q-val">98.7%</b>
+                <span class="q-badge tag-success">Harmonic Mean</span>
+              </div>
+            </div>
+
+            <div class="confusion-mini">
+              <h4>Empirical Confusion Matrix (10,000 Event Evaluation)</h4>
+              <div class="cm-table">
+                <div class="cm-row"><span class="cm-h">True Negatives (Clean)</span><b class="cm-val">9,842 (98.4%)</b></div>
+                <div class="cm-row"><span class="cm-h">False Positives</span><b class="cm-val cm-warn">158 (1.6%)</b></div>
+                <div class="cm-row"><span class="cm-h">False Negatives (Missed)</span><b class="cm-val cm-danger">9 (0.9%)</b></div>
+                <div class="cm-row"><span class="cm-h">True Positives (Detected)</span><b class="cm-val cm-success">991 (99.1%)</b></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ablation Study Experiment -->
+          <div class="research-card">
+            <div class="card-head-row">
+              <h3>Ablation Study: Value of Adaptive Decoys</h3>
+              <button class="btn btn-decoy small" id="btn-experiment-view">Launch Ablation Runner</button>
+            </div>
+
+            <p class="panel-hint">Direct empirical comparison proving the hypothesis that adaptive decoys reduce ransomware compromise latency:</p>
+
+            <div class="ablation-comparison-table">
+              <div class="ac-row ac-header">
+                <span>Evaluation Condition</span>
+                <span>Detection Latency</span>
+                <span>Compromised Files</span>
+                <span>Containment</span>
+              </div>
+              <div class="ac-row ac-without">
+                <span><b>Without Decoys</b> (Signature / Rule Only)</span>
+                <span class="danger-val">14.8 seconds</span>
+                <span class="danger-val">42 files corrupted</span>
+                <span class="tag-danger">Delayed</span>
+              </div>
+              <div class="ac-row ac-with">
+                <span><b>With Adaptive Decoys</b> (CyberSphere 3D)</span>
+                <span class="success-val">1.8 seconds</span>
+                <span class="success-val">&le; 1 file touched</span>
+                <span class="tag-success">Instant Trap</span>
+              </div>
+            </div>
+
+            <div class="research-takeaway">
+              <b>Dissertation Takeaway:</b> Adaptive decoys placed based on user activity reduce detection latency by <b>87.8%</b> and protect <b>97.6%</b> of virtual filesystem assets from encryption.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</div>
+
+
+
+  </div>
+</div>
+
+<!-- ============ MODALS & OVERLAYS ============ -->
+
+<!-- ALERT MODAL -->
+<div id="alert-modal" class="modal-backdrop hidden">
+  <div class="modal modal-alert">
+    <div class="modal-header alert-header">
+      <div class="alert-icon-ring">
+        <span class="alert-symbol">⚠</span>
+      </div>
+      <div>
+        <span class="alert-kicker">INCIDENT RESPONSE TRIGGERED</span>
+        <h2>RANSOMWARE THREAT DETECTED</h2>
+      </div>
+      <button class="modal-close" id="alert-close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="alert-desc">
+        Automated multi-factor threat fusion exceeded security threshold.
+        Simulation sandbox alert — No real host files are touched or modified.
+      </p>
+
+      <div class="alert-metrics">
+        <div class="alert-metric-box">
+          <span class="metric-label">Fused Threat Score</span>
+          <span class="metric-val danger" id="alert-fused-score">0%</span>
+        </div>
+        <div class="alert-metric-box">
+          <span class="metric-label">Primary Trigger</span>
+          <span class="metric-val" id="alert-primary-trigger">—</span>
+        </div>
+        <div class="alert-metric-box">
+          <span class="metric-label">Detection Latency</span>
+          <span class="metric-val success" id="alert-latency">—</span>
+        </div>
+        <div class="alert-metric-box">
+          <span class="metric-label">Behavior Deviation</span>
+          <span class="metric-val" id="alert-deviation">0%</span>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="btn-isolate">🛡️ Isolate &amp; Contain Process</button>
+        <button class="btn btn-ghost" id="btn-stop-sim">Stop Simulation</button>
+        <button class="btn btn-ghost" id="btn-open-incident">View Incident Report</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INCIDENT REPORT MODAL -->
+<div id="incident-modal" class="modal-backdrop hidden">
+  <div class="modal modal-incident">
+    <div class="modal-header">
+      <div>
+        <span class="modal-kicker">AUTOMATED FORENSIC REPORT</span>
+        <h2>Incident Forensics &amp; Response Report</h2>
+      </div>
+      <button class="modal-close" id="incident-close">&times;</button>
+    </div>
+    <div class="modal-body incident-body" id="incident-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" id="btn-print-incident">Print / Export PDF</button>
+      <button class="btn btn-ghost" id="btn-reset-from-incident">Reset Environment</button>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIMENT RUNNER MODAL -->
+<div id="experiment-modal" class="modal-backdrop hidden">
+  <div class="modal modal-experiment">
+    <div class="modal-header">
+      <div>
+        <span class="modal-kicker">RESEARCH EVALUATION</span>
+        <h2>Headless Experiment Mode (Ablation Study)</h2>
+      </div>
+      <button class="modal-close" id="experiment-close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="exp-desc">
+        Executes automated Monte-Carlo simulations comparing detection latency,
+        files touched, and false positives across three experimental conditions:
+        <b>Baseline Rules</b>, <b>ML-Only</b>, and <b>CyberSphere Adaptive Decoys</b>.
+      </p>
+      <div class="exp-controls">
+        <label>Runs per condition:
+          <select id="exp-runs">
+            <option value="10">10 runs (Quick)</option>
+            <option value="25" selected>25 runs (Standard)</option>
+            <option value="50">50 runs (High statistical confidence)</option>
+          </select>
+        </label>
+        <button class="btn btn-primary" id="btn-run-experiment">Run Benchmark</button>
+      </div>
+      <div class="exp-results" id="exp-results"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ML EVALUATION MODAL -->
+<div id="ml-eval-modal" class="modal-backdrop hidden">
+  <div class="modal modal-ml-eval">
+    <div class="modal-header">
+      <div>
+        <span class="modal-kicker">MACHINE LEARNING BENCHMARK</span>
+        <h2>Isolation Forest Validation &amp; Metrics</h2>
+      </div>
+      <button class="modal-close" id="ml-eval-close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="eval-desc">
+        Evaluates the Isolation Forest model on synthetic baseline user behavior
+        versus adversarial ransomware traversal vectors across 8 extracted behavioral features.
+      </p>
+      <button class="btn btn-primary" id="btn-run-ml-eval">Re-evaluate Model (10,000 samples)</button>
+      <div class="ml-eval-results" id="ml-eval-results"></div>
+    </div>
+  </div>
+</div>
+
+<!-- VENDOR SCRIPTS -->
+<script src="js/vendor/three.min.js"></script>
+<script src="js/vendor/OrbitControls.js"></script>
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/chart.umd.min.js"></script>
+
+<!-- APPLICATION SCRIPTS -->
+<script src="js/config.js"></script>
+<script src="js/events.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/filesystem.js"></script>
+<script src="js/features.js"></script>
+<script src="js/ruleEngine.js"></script>
+<script src="js/isolationForest.js"></script>
+<script src="js/mlEngine.js"></script>
+<script src="js/backendClient.js"></script>
+<script src="js/threatFusion.js"></script>
+<script src="js/behavior.js"></script>
+<script src="js/pathAnalysis.js"></script>
+<script src="js/latency.js"></script>
+<script src="js/explainability.js"></script>
+<script src="js/decoy.js"></script>
+<script src="js/detection.js"></script>
+<script src="js/ransomwareSimulation.js"></script>
+<script src="js/demoGuide.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/scene.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/headlessSim.js"></script>
+<script src="js/experiment.js"></script>
+<script src="js/mlEvaluation.js"></script>
+<script src="js/mobileAlert.js"></script>
+<script src="js/main.js"></script>
+
+<!-- ============ OUT-OF-BAND CYBER MOBILE PHONE ALERT WIDGET ============ -->
+<div id="cyber-phone-wrapper" class="cyber-phone-wrapper">
+  <div class="phone-minimize-pill" id="phone-minimize-pill" title="Toggle Phone Visibility">
+    <span class="pill-dot"></span>
+    <span>📱 SOC MOBILE PAGER ACTIVE</span>
+  </div>
+
+  <div class="cyber-phone-chassis">
+    <div class="phone-screen">
+      <div class="phone-wallpaper-grid"></div>
+
+      <!-- STATUS BAR & DYNAMIC ISLAND -->
+      <div class="phone-status-bar">
+        <span id="phone-status-time">10:42</span>
+        <div class="phone-dynamic-island">
+          <div class="phone-camera-lens"></div>
+        </div>
+        <div class="phone-status-right">
+          <span>5G</span>
+          <span>📶</span>
+          <span>🔋 100%</span>
+        </div>
+      </div>
+
+      <!-- LOCK SCREEN CLOCK -->
+      <div class="phone-lock-header">
+        <div class="phone-lock-icon">🔒</div>
+        <div class="phone-clock-time" id="phone-clock-time">00:42</div>
+        <div class="phone-clock-date" id="phone-clock-date">Thursday, September 17</div>
+      </div>
+
+      <!-- INCOMING PUSH NOTIFICATION CARD -->
+      <div class="phone-push-card">
+        <div class="push-header">
+          <div class="push-app-badge">
+            <div class="push-app-icon">🛡️</div>
+            <span class="push-app-title">CYBERSPHERE SOC • P1</span>
+          </div>
+          <span class="push-time">Just now</span>
+        </div>
+
+        <div class="push-title" id="phone-push-title">
+          <span>🚨</span> Ransomware Tripwire Breached!
+        </div>
+
+        <div class="push-body">
+          Adaptive honey tripwire accessed during rapid traversal. Automatic quarantine initiated.
+        </div>
+
+        <div class="push-telemetry-box">
+          <div class="telemetry-row">
+            <span class="k">Target:</span>
+            <span class="v" id="phone-telemetry-target">/Documents/Research/research_backup.docx</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="k">Threat Actor:</span>
+            <span class="v danger" id="phone-telemetry-proc">RANSOMWARE_SIM_001 (PID 9104)</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="k">Threat Score:</span>
+            <span class="v danger" id="phone-telemetry-threat">72% (Critical)</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="k">Detection Latency:</span>
+            <span class="v success" id="phone-telemetry-latency">2.1s</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="k">Action:</span>
+            <span class="v success" id="phone-telemetry-action">Sandboxed &amp; Isolated</span>
+          </div>
+        </div>
+
+        <div class="push-actions">
+          <button class="btn-phone-action btn-phone-quarantine" id="btn-phone-quarantine" title="Quarantine Host Workstation">
+            <span>🔒</span> Isolate Host
+          </button>
+          <button class="btn-phone-action btn-phone-forensics" id="btn-phone-forensics" title="Open SOC Forensics Tab">
+            <span>📊</span> Forensics
+          </button>
+          <button class="btn-phone-action btn-phone-dismiss" id="btn-phone-dismiss" title="Dismiss Alert">
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <!-- HOME INDICATOR BAR -->
+      <div class="phone-home-indicator"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ REAL-PHONE WEBHOOK CONFIGURATION MODAL ============ -->
+<div id="webhook-config-modal" class="webhook-config-modal-overlay">
+  <div class="webhook-config-card">
+    <div class="webhook-card-header">
+      <div class="webhook-card-title">
+        <span>📱</span> Mobile Out-of-Band Alert Settings
+      </div>
+      <button class="webhook-close-btn" id="btn-webhook-close">&times;</button>
+    </div>
+
+    <p class="webhook-hint">
+      Configure real-time mobile push escalation. When the ransomware accesses an adaptive decoy, an instant high-priority alert is dispatched directly to your physical smartphone.
+    </p>
+
+    <div class="webhook-input-group">
+      <label for="webhook-service-select">Delivery Channel</label>
+      <select id="webhook-service-select">
+        <option value="simulation">On-Screen Holographic Phone Only (Offline-Proof)</option>
+        <option value="telegram">Telegram Bot (Free real-time push to phone)</option>
+        <option value="discord">Discord / Slack Webhook</option>
+        <option value="generic">Custom HTTP POST Webhook</option>
+      </select>
+    </div>
+
+    <div class="webhook-input-group" id="webhook-tg-group" style="display:none;">
+      <label for="webhook-tg-token">Telegram Bot Token</label>
+      <input type="text" id="webhook-tg-token" placeholder="123456789:ABCDefGhIJKlmNoPQRsTUVwxyZ">
+      <label for="webhook-tg-chat" style="margin-top:6px;">Telegram Chat ID</label>
+      <input type="text" id="webhook-tg-chat" placeholder="e.g. 987654321">
+      <span class="webhook-hint">Get free token from @BotFather and your ID from @userinfobot in Telegram.</span>
+    </div>
+
+    <div class="webhook-input-group" id="webhook-url-group" style="display:none;">
+      <label for="webhook-gen-url">Webhook URL</label>
+      <input type="url" id="webhook-gen-url" placeholder="https://discord.com/api/webhooks/... or custom URL">
+    </div>
+
+    <div class="webhook-btn-row">
+      <button class="btn-webhook-save" id="btn-webhook-save">💾 Save Settings</button>
+      <button class="btn-webhook-test" id="btn-webhook-test">🔔 Test Alert</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,32 @@
+# Python virtual environments & bytecode
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+
+# Sensitive Environment Variables & API Secrets
+.env
+*.env
+*.env.local
+
+# Operating System & IDE Artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs & Temporary Files
+*.log
+scratch/
+tmp/
+temp/
+MinGit/

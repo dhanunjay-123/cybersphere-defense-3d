@@ -1,0 +1,522 @@
+/* =========================================================
+   mobile-phone.css
+   CYBERSPHERE DEFENSE 3D — Futuristic Cyber Mobile Phone Alert Widget
+   Implements holographic smartphone lock-screen with live push notifications
+   ========================================================= */
+
+.cyber-phone-wrapper {
+  position: fixed;
+  bottom: 24px;
+  right: 28px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  transform: translateY(115%);
+  opacity: 0;
+}
+
+.cyber-phone-wrapper.active {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cyber-phone-wrapper.minimized {
+  transform: translateY(calc(100% - 44px));
+  pointer-events: auto;
+}
+
+/* Floating Minimized Pill / Handle */
+.phone-minimize-pill {
+  background: linear-gradient(135deg, rgba(10, 18, 30, 0.95), rgba(18, 30, 52, 0.95));
+  border: 1px solid rgba(0, 229, 255, 0.6);
+  border-radius: 20px;
+  padding: 8px 16px;
+  margin-bottom: 8px;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 229, 255, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.25s ease;
+}
+
+.phone-minimize-pill:hover {
+  background: rgba(0, 229, 255, 0.25);
+  border-color: var(--cyan);
+  box-shadow: 0 0 22px rgba(0, 229, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.phone-minimize-pill .pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 10px var(--red);
+  animation: phonePulse 1.2s infinite alternate;
+}
+
+@keyframes phonePulse {
+  0% { transform: scale(0.85); opacity: 0.7; }
+  100% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Smartphone Hardware Chassis */
+.cyber-phone-chassis {
+  width: 320px;
+  height: 560px;
+  background: #090f19;
+  border: 4px solid #1c2b42;
+  border-radius: 42px;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.85),
+    0 0 35px rgba(0, 229, 255, 0.3),
+    inset 0 0 0 2px rgba(0, 229, 255, 0.35);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
+/* Side Action Buttons on Phone Frame */
+.cyber-phone-chassis::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 110px;
+  width: 4px;
+  height: 38px;
+  background: #253957;
+  border-radius: 3px 0 0 3px;
+}
+
+.cyber-phone-chassis::after {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 160px;
+  width: 4px;
+  height: 48px;
+  background: #253957;
+  border-radius: 3px 0 0 3px;
+}
+
+/* Screen Display Area */
+.phone-screen {
+  flex: 1;
+  background: radial-gradient(circle at 50% 25%, #0f1c30 0%, #060a12 100%);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  padding: 10px 16px 20px 16px;
+}
+
+/* Subtle Cyber Grid Wallpaper */
+.phone-wallpaper-grid {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+/* Status Bar & Dynamic Island */
+.phone-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 8px 6px 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: #e2e8f0;
+  position: relative;
+  z-index: 10;
+}
+
+.phone-dynamic-island {
+  width: 92px;
+  height: 22px;
+  background: #000;
+  border-radius: 20px;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.phone-camera-lens {
+  width: 9px;
+  height: 9px;
+  background: #0d1522;
+  border: 1px solid #1e293b;
+  border-radius: 50%;
+}
+
+.phone-status-right {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+}
+
+/* Lock Screen Clock */
+.phone-lock-header {
+  text-align: center;
+  margin-top: 26px;
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 5;
+}
+
+.phone-lock-icon {
+  font-size: 14px;
+  color: var(--cyan);
+  margin-bottom: 4px;
+}
+
+.phone-clock-time {
+  font-family: var(--font-display);
+  font-size: 46px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+}
+
+.phone-clock-date {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #94a3b8;
+  margin-top: 5px;
+  letter-spacing: 0.02em;
+}
+
+/* PUSH NOTIFICATION CARD */
+.phone-push-card {
+  background: rgba(14, 23, 38, 0.9);
+  border: 1px solid rgba(255, 23, 68, 0.5);
+  border-radius: 20px;
+  padding: 12px 14px;
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(255, 23, 68, 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  position: relative;
+  z-index: 5;
+  animation: phoneCardDrop 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes phoneCardDrop {
+  0% { transform: translateY(-24px) scale(0.92); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.push-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.push-app-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.push-app-icon {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #ff1744, #d500f9);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+.push-app-title {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: 0.06em;
+}
+
+.push-time {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.push-title {
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #ff5252;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.push-body {
+  font-size: 11px;
+  color: #cbd5e1;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.push-telemetry-box {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 10px;
+}
+
+.telemetry-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.telemetry-row .k { color: #94a3b8; }
+.telemetry-row .v { color: #38bdf8; font-weight: 600; }
+.telemetry-row .v.danger { color: #ff5252; }
+.telemetry-row .v.success { color: #4ade80; }
+
+/* Interactive Action Buttons */
+.push-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-phone-action {
+  flex: 1;
+  border: none;
+  border-radius: 12px;
+  padding: 7px 4px;
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.btn-phone-quarantine {
+  background: linear-gradient(135deg, #ff1744, #b71c1c);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(255, 23, 68, 0.4);
+}
+
+.btn-phone-quarantine:hover {
+  background: #ff1744;
+  box-shadow: 0 0 14px rgba(255, 23, 68, 0.7);
+}
+
+.btn-phone-forensics {
+  background: rgba(0, 229, 255, 0.2);
+  border: 1px solid rgba(0, 229, 255, 0.5);
+  color: #38bdf8;
+}
+
+.btn-phone-forensics:hover {
+  background: rgba(0, 229, 255, 0.35);
+  color: #fff;
+}
+
+.btn-phone-dismiss {
+  background: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  max-width: 32px;
+}
+
+.btn-phone-dismiss:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+/* Home Navigation Bar (iOS/Android bar) */
+.phone-home-indicator {
+  width: 108px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 3px;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Real-Phone Webhook Config Modal */
+.webhook-config-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(4, 8, 16, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.webhook-config-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.webhook-config-card {
+  width: 460px;
+  max-width: calc(100% - 32px);
+  background: #0b1322;
+  border: 1px solid rgba(0, 229, 255, 0.5);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(0, 229, 255, 0.2);
+  color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: var(--font-body);
+}
+
+.webhook-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 12px;
+}
+
+.webhook-card-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cyan);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.webhook-close-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.webhook-close-btn:hover { color: #fff; }
+
+.webhook-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.webhook-input-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.webhook-input-group input,
+.webhook-input-group select {
+  background: rgba(18, 30, 49, 0.8);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  outline: none;
+}
+
+.webhook-input-group input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+}
+
+.webhook-hint {
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+.webhook-btn-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.btn-webhook-save {
+  flex: 1;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.3), rgba(0, 229, 255, 0.5));
+  border: 1px solid var(--cyan);
+  border-radius: 10px;
+  padding: 10px;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-webhook-save:hover {
+  background: var(--cyan);
+  color: #000;
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.5);
+}
+
+.btn-webhook-test {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 10px 16px;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-webhook-test:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
