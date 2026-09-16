@@ -100,6 +100,18 @@ const RansomwareSimulation = (() => {
       });
     }
 
+    // Trigger instant mobile incident notification upon attack initiation
+    if (window.MobileAlertEngine && MobileAlertEngine.triggerAlert) {
+      MobileAlertEngine.triggerAlert({
+        title: '⚠️ ALERT: Ransomware Sweep Initiated!',
+        targetPath: '/Documents/Projects',
+        process: 'RANSOMWARE_SIM_001 (PID 9104)',
+        threatScore: '65% (Elevated Traversal)',
+        latency: '0.35s',
+        actionTaken: 'Real-Time Behavioral Tracking & Decoy Defense Armed'
+      });
+    }
+
     scheduleNext(420);
   }
 
