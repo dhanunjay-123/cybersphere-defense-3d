@@ -272,20 +272,22 @@ async def send_mobile_alert(request: Request):
     dispatched = False
     details = "Delivered to on-screen holographic SOC phone widget"
 
-    if service == "telegram":
-        tg_token = (cfg.get("telegramToken") or os.getenv("TELEGRAM_BOT_TOKEN", "")).strip()
-        tg_chat = (cfg.get("telegramChatId") or os.getenv("TELEGRAM_CHAT_ID", "")).strip()
-        if tg_token and tg_chat:
-            try:
-                tg_url = f"https://api.telegram.org/bot{tg_token}/sendMessage"
-                data = json.dumps({"chat_id": tg_chat, "text": html_message, "parse_mode": "HTML"}).encode("utf-8")
-                req = urllib.request.Request(tg_url, data=data, headers={"Content-Type": "application/json"})
-                with urllib.request.urlopen(req, timeout=5) as resp:
-                    if resp.status == 200:
-                        dispatched = True
-                        details = "Successfully pushed to physical phone via Telegram Bot"
-            except Exception as e:
-                details = f"Telegram push failed ({e}); mirrored on screen"
+    tg_token = (cfg.get("telegramToken") or os.getenv("TELEGRAM_BOT_TOKEN", "")).strip()
+    tg_chat = (cfg.get("telegramChatId") or os.getenv("TELEGRAM_CHAT_ID", "")).strip()
+
+    if tg_token and tg_chat:
+        try:
+            tg_url = f"https://api.telegram.org/bot{tg_token}/sendMessage"
+            data = json.dumps({"chat_id": tg_chat, "text": html_message, "parse_mode": "HTML"}).encode("utf-8")
+            req = urllib.request.Request(tg_url, data=data, headers={"Content-Type": "application/json"})
+            with urllib.request.urlopen(req, timeout=5) as resp:
+                if resp.status == 200:
+                    dispatched = True
+                    details = "Successfully pushed to physical phone via Telegram Bot"
+                    print(f"[MobileAlert] Successfully delivered to Telegram chat {tg_chat}")
+        except Exception as e:
+            print(f"[MobileAlert] Telegram push error: {e}")
+            details = f"Telegram push failed ({e}); mirrored on screen"
 
     elif service in ("discord", "generic"):
         webhook_url = (cfg.get("webhookUrl") or os.getenv("DISCORD_WEBHOOK_URL", "")).strip()

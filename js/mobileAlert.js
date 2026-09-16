@@ -8,11 +8,14 @@
 const MobileAlertEngine = (() => {
 
   const STORAGE_KEY = 'cybersphere_mobile_webhook_v1';
+  const DEFAULT_TELEGRAM_TOKEN = '8774117786:AAEPEcC8HgH6BKWg9p3hUVwNhDs8qlo6XRM';
+  const DEFAULT_TELEGRAM_CHAT_ID = '6124691479';
+
   let config = {
     enabled: true,
     service: 'telegram',
-    telegramToken: '',
-    telegramChatId: '',
+    telegramToken: DEFAULT_TELEGRAM_TOKEN,
+    telegramChatId: DEFAULT_TELEGRAM_CHAT_ID,
     webhookUrl: ''
   };
 
@@ -29,6 +32,9 @@ const MobileAlertEngine = (() => {
       if (saved) {
         config = { ...config, ...JSON.parse(saved) };
       }
+      if (!config.telegramToken) config.telegramToken = DEFAULT_TELEGRAM_TOKEN;
+      if (!config.telegramChatId) config.telegramChatId = DEFAULT_TELEGRAM_CHAT_ID;
+      if (!config.service || config.service === 'simulation') config.service = 'telegram';
     } catch (e) {
       console.warn('[MobileAlert] Could not load saved config:', e);
     }
